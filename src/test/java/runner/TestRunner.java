@@ -37,7 +37,6 @@ import org.junit.runner.RunWith;
 )
 
 
-
 //This class will allow us to execute and run our feature files/step definitions.
 //run this class it will pass and generate a report for you so go to the left menu click on (target) folder
 //then double click on (primetech-report.html) it will open a file on the right side go there you see browsers
