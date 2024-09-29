@@ -24,14 +24,13 @@ import org.junit.runner.RunWith;
 // on the right side of the console but if you click on any scenario under the (Login feature) you will get the
 // steps only for that specific scenario on the right side of the console.
 //go to ( Login_StepDef) and paste it there
-@CucumberOptions(features = "src/test/resources/features/" ,
+@CucumberOptions(features = "src/test/resources/features/User_Access.feature",//here we will specify to execute
+                                               //(User_Access.feature) file only not all files inside(features)
         glue = "stepdefinitions",
-        plugin = {"pretty" ,"html:target/primetech-report.html"}//this is to generate a report for us since it
+        plugin = {"pretty" ,"html:target/primetech-report.html"}, //this is to generate a report for us since it
                                                                 //has 2 values then we need to put them in { }
-        //dryRun = true //if you run this it will show you any step in the features files that is not working
-                        //so we will create an exact copy of this file but we will activate the dryRun there
-                        //so we can run it anytime we want to see steps that are not executing and we will keep
-                        //this copy for regular performance.
+        dryRun = true //this will compare the steps we have in the (User_Access.feature) file to the
+                      //(stepdefinitions) files and if nothing matches it will generate steps for you
 )
 
 

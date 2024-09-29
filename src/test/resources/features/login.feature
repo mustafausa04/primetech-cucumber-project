@@ -1,3 +1,17 @@
+# Transform below test cases into Gherkin language using Given/When/
+# ThenTest case 1:
+# On saucedemo.com home page
+# Verify that login button is displayed
+# And verify Swag labs label is displayed
+# Test case 2:
+# On saucedemo.com home page
+# Enter username standard_user
+# Enter password secret_sauce
+# Verify Products label is displ
+
+
+
+
 Feature: Login feature
   As a user I should be able to verify that login is working as expected
 
