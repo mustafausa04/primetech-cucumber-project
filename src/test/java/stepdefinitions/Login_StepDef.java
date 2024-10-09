@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utilities.Driver;
 
 public class Login_StepDef {
     //import all @Given and the rest
@@ -17,12 +18,11 @@ public class Login_StepDef {
     //        throw new io.cucumber.java.PendingException();
 
     //we have to declare the driver up here to make it global so we can use it in each method below
-    WebDriver driver;
+    WebDriver driver = Driver.getDriver();
 
     @Given("User is navigated to saucedemo.com")
     public void user_is_navigated_to_saucedemo_com() {
         //here we write our normal code
-        driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
     }
 
@@ -35,7 +35,7 @@ public class Login_StepDef {
 
     }
     //here make sure to change @When to @And because everything here has to match what we have in the cucumber
-    //file (login.feature)
+    //file (Login_saucedemo.feature)
     @And("User enters {string} in the password field")
     public void user_enters_in_the_password_field(String passValue) {//here we change (String string) to (String passValue)
         System.out.println("This is the value of pass : " + passValue);
@@ -44,7 +44,7 @@ public class Login_StepDef {
     }
 
     //here make sure to change @When to @And because everything here has to match what we have in the cucumber
-    //file (login.feature)
+    //file (Login_saucedemo.feature)
     @And("User clicks on Login Button")
     public void user_clicks_on_login_button() {
         WebElement button  = driver.findElement(By.xpath("//input[@id='login-button']"));
@@ -67,7 +67,7 @@ public class Login_StepDef {
         //Option 1: old way to verify
         //here we will verify the actual result coming from UI to the requirement the test case will pass for
         //both positive and negative which is wrong because for negative it shouldn't pass so if we go to
-        //(login.feature) file and changed the "Products" to "Productssss" it will show you on the console that
+        //(Login_saucedemo.feature) file and changed the "Products" to "Productssss" it will show you on the console that
         //is "not equal" but on the left side of the console it will show pass and green which is wrong that's
         //why we need to use (Assertion) that is coming from junit library
         //if (expectedProductLabel.equals(actualElement.getText())){
@@ -80,7 +80,7 @@ public class Login_StepDef {
         //we will use (Assertion) instead of if condition to compare
         Assert.assertEquals(expectedProductLabel , actualLabel );
 
-        driver.quit();
+        //driver.quit();//we can add this to Hooks class and it will close each scenario after it's done
 
 
     }

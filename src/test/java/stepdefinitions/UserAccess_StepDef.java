@@ -37,10 +37,12 @@ public class UserAccess_StepDef {
     //user name: entityadmin@primetechschool.com , password: primetech@school
     @Given("user is navigated to Crater login page")
     public void user_is_navigated_to_crater_login_page() {
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();//we added this line in the hook so we don't need it here
+
         driver.get("http://crater.primetech-apps.com/login");
-        //add implicit wait after loading the web page if we don't add the implicit wait we will hav an error
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        //add implicit wait after loading the web page if we don't add the implicit wait we will have an error
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));//we added this line in the hook so we don't need it here
     }
 
     @When("user enters valid username and valid password")
@@ -57,16 +59,16 @@ public class UserAccess_StepDef {
 
         //using Action class
         SeleniumUtils.sendkeysWithActionsClass(loginPage.emailInput ,"entityadmin@primetechschool.com");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         SeleniumUtils.sendkeysWithActionsClass(loginPage.passwordInput,"primetech@school");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
     }
 
     //here you need to replace @When with @And, it's cucumber error not us
     @And("user clicks on login button")
     public void user_clicks_on_login_button() throws InterruptedException {
         loginPage.loginButton.click();
-        Thread.sleep(3000);//you have to put the waiting time here otherwise it won't see the button
+        Thread.sleep(2000);//you have to put the waiting time here otherwise it won't see the button
     }
 
     @Then("user should be logged in successfully")
@@ -83,7 +85,8 @@ public class UserAccess_StepDef {
         //here we rae verifying if the (Settings) text is display if yes it means true
         Assert.assertTrue(settingsPage.settingsLabel.isDisplayed());
         Thread.sleep(2000);
-        Driver.closeDriver();
+        //Driver.closeDriver();//we could leave this commented or uncommented because we already added in the
+                               //(Hooks) class and it will run from there
     }
 
     //this is the second scenario2
@@ -92,9 +95,9 @@ public class UserAccess_StepDef {
     @When("user enters invalid username and valid password")
     public void user_enters_invalid_username_and_valid_password() throws InterruptedException {
         SeleniumUtils.sendkeysWithActionsClass(loginPage.emailInput ,"xxxxxx@primetechschool.com");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         SeleniumUtils.sendkeysWithActionsClass(loginPage.passwordInput,"primetech@school");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
     }
 
     @Then("user should see an error message {string} displayed")
@@ -110,7 +113,8 @@ public class UserAccess_StepDef {
         String loginUrl = "http://crater.primetech-apps.com/login";
         //verify that login url didn't changes , meaning we are still in the same page and we couldn't login
         Assert.assertTrue(driver.getCurrentUrl().equals(loginUrl));
-        Driver.closeDriver();
+        //Driver.closeDriver();//we could leave this commented or uncommented because we already added in the
+        //                     //(Hooks) class and it will run from there
     }
 
 
