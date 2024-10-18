@@ -74,6 +74,7 @@ public class UserAccess_StepDef {
     @Then("user should be logged in successfully")
     public void user_should_be_logged_in_successfully() throws InterruptedException {
         //verify using url that is different from login url
+        Thread.sleep(2000);
         String loginUrl = "http://crater.primetech-apps.com/login";
         String afterLoginUrl = driver.getCurrentUrl();
         System.out.println("Current URL after login in is : " + afterLoginUrl);

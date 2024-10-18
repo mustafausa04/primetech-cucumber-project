@@ -13,7 +13,7 @@ public class SettingsPage {
     }
 
     //************ ELEMENTS *************
-
+    //to find the text Settings
     @FindBy(xpath = "//h3[text()='Settings']")
     public WebElement settingsLabel;
 

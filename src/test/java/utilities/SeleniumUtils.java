@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class SeleniumUtils {
     //we create this class to keep all the utilities method which means all the methods that could be used for any
     //repeated steps in anywhere or any other class we need too.
@@ -60,6 +62,26 @@ public class SeleniumUtils {
     public static void sendkeysWithActionsClass(WebElement element , String input){
         Actions actions = new Actions(Driver.getDriver());
         actions.sendKeys(element , input).build().perform();
+    }
+
+
+    /**
+     * This method will check if the item is in the table
+     * @param elementList the list of elements that are in the table
+     * @param itemNameToSearchFor the item name that we are looking for
+     * @return true if the item is in the table, false if the item is not in the table
+     */
+    public static boolean isItemInTable(List<WebElement> elementList , String itemNameToSearchFor){
+        //loop through the list of elements
+        for(WebElement item : elementList){
+            //if the item text is equal to the item name that we are looking for
+            if(item.getText().equals(itemNameToSearchFor)){
+                //return true if the item is in the table
+                return true;
+            }
+        }
+        //if the item is not in the table
+        return  false;
     }
 
 

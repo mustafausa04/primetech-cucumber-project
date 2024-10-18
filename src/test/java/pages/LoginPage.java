@@ -13,13 +13,15 @@ public class LoginPage {
     }
 
     //************ ELEMENTS *************
-
+    //to find the email input box
     @FindBy(xpath = "//input[@name='email']")
     public WebElement emailInput;
 
+    //to find the password input box
     @FindBy(xpath = "//input[@name='password']")
     public WebElement passwordInput;
 
+    //to find the login button
     @FindBy(xpath = "//button[text()='Login' and @type='submit']")
     public WebElement loginButton;
 

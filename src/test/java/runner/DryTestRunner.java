@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
 // on the right side of the console but if you click on any scenario under the (Login feature) you will get the
 // steps only for that specific scenario on the right side of the console.
 //go to ( Login_StepDef) and paste it there
-@CucumberOptions(features = "src/test/resources/features/CreateDbAccount_Datatable.feature",//here we will specify to execute
+@CucumberOptions(features = "src/test/resources/features/",//here we will specify to execute
                                                //(User_Access.feature) file only not all files inside(features)
         glue = "stepdefinitions",
         plugin = {"pretty" ,"html:target/primetech-report.html"}, //this is to generate a report for us since it
@@ -41,6 +41,12 @@ import org.junit.runner.RunWith;
 //run this class it will pass and generate a report for you so go to the left menu click on (target) folder
 //then double click on (primetech-report.html) it will open a file on the right side go there you see browsers
 //icons, choose chrome you see the report.
+//what does the dryRunner do??
+//it will go to (features) files and check if each file is glued to its step definition file in the (stepdefinitions)
+//folder, it will be good but if any of those (features) files has no its step definition file in the
+//(stepdefinitions), the dryRunner will give you in the console all the steps that are missing and this what we need
+//to copy and go paste them in the step definition file once we created it for that specific feature file.
+
 public class DryTestRunner {
 
 }

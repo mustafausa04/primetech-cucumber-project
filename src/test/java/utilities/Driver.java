@@ -2,6 +2,11 @@ package utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariDriver;
 
 public class Driver {
     //The (singleton pattern) in software engineering is a design pattern that
@@ -32,9 +37,50 @@ public class Driver {
     //is ChromeDriver and start the session and then return it to use it (we have to return it because we put the return
     //type (WebDriver) before the name of the method (getDriver), if we put (void) then we don't need to return anything
     public static WebDriver getDriver(){
-        System.out.println("Getting an instance of the driver");
-        if(driver == null){//here we assigned the driver
-            driver = new ChromeDriver(); //Instantiate only once
+        //the first way we learned
+        //System.out.println("Getting an instance of the driver");
+        //if(driver == null){//here we assigned the driver
+        //    driver = new ChromeDriver(); //Instantiate only once
+
+        //the second way
+        //String browserType = "firefox"; // we will replace this with the one below
+        //we will get the browserType value from the (ConfigurationReader.getPropertyValue()) which will go to
+        //(configuration.properties) and grab it.
+        String browserType = ConfigurationReader.getPropertyValue("browserType");
+        if (driver == null){
+            //we could use this below to convert the word to lower case in case if someone made a mistake and put
+            //"Chrome" instead of "chrome"
+            //switch (browserType.toLowerCase()){
+            switch (browserType){ //if the browserType is chrome then make the driver ChromeDriver and break if it
+                case "chrome":    //is firefox then switch to it and make the driver FirefoxDriver then break and so
+                    driver = new ChromeDriver();
+                    break;
+                case "firefox":
+                    driver = new FirefoxDriver();
+                    break;
+                case "edge":
+                    driver = new EdgeDriver();
+                    break;
+                case "safari":
+                    driver = new SafariDriver();
+                    break;
+                case "chrome-headless":          //we will create new instance of chromedriver in headless mode
+                    System.out.println("Running in headless mode in chrome");
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--headless");
+                    driver = new ChromeDriver(chromeOptions);
+                    break;
+                case "firefox-headless":         //we will create new instance of firefoxdriver in headless mode
+                    System.out.println("Running in headless mode in firefox");
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.addArguments("--headless");
+                    driver = new FirefoxDriver(firefoxOptions);
+                    break;
+                default:                      //if nothing matches then go use what is in the default
+                    driver = new ChromeDriver();
+                    break;
+            }
+
         }
         return driver;// this is an existing one that is not null ( driver this is alive)
     }

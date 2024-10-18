@@ -15,18 +15,22 @@
     </properties>
 
     <dependencies>
+
+
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.19.0</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>7.14.0</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -34,6 +38,37 @@
             <version>7.14.0</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
+        <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extentreports-cucumber7-adapter</artifactId>
+            <version>1.14.0</version>
+        </dependency>
+
+
     </dependencies>
+
+    <!--we will add this (surefire) even though maven can do everything without it we can add it in case if we run
+     1000 cases and some fails they will make the others fail too so we can skip the failing one to continue
+     doing what we do-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>     <!--those 2 line are plug in -->
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>                                  <!--those are configurations-->
+                    <!--<parallel>methods</parallel>-->   <!--this one used when you run multi scenarios at once-->
+                    <!--<useUnlimitedThreads>true</useUnlimitedThreads>--> <!--this is to use Threads-->
+                    <!--<threadCount>4</threadCount>-->  <!--this one to use Threads too-->
+                    <testFailureIgnore>true</testFailureIgnore> <!--this is to ignore the failed test case to continue -->
+                    <includes>
+                        <include>**/TestRunner.java</include><!--this(**) means find me anywhere TestRunner-->
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
