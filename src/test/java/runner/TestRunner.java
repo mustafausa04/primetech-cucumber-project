@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
 // on the right side of the console but if you click on any scenario under the (Login feature) you will get the
 // steps only for that specific scenario on the right side of the console.
 //go to (Login_StepDef) file and paste it there
-@CucumberOptions(features = "src/test/resources/features/Add-New_Invoices.feature",
+@CucumberOptions(features = "src/test/resources/features/",
         glue = {"stepdefinitions", "hooks"}, //we will add the package names of (hooks) and (stepdefinitions)
         plugin = {"pretty" ,"html:target/primetech-report.html", //this is to generate a report for us since it
                             "json:target/primetech-report.json", //has 4 values then we need to put them in { }

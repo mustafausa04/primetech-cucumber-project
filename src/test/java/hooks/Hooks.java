@@ -29,8 +29,8 @@ public class Hooks {
     //exception only if that scenario has @smoke annotation on it, so basically run those steps(maximize, implicitly)
     //before any scenario has @smoke, if the scenario doesn't have @smoke will still be run but without those steps
     //(maximize, and implicitly)
-    //("not @demo") this means do not run those Before steps for anything has demo tag
-    @Before("not @demo") //("@smoke")          //make sure you import this from io.cucumber.java
+    //("not @demo") this means do not run those Before steps for anything has demo tag and api tag
+    @Before("not @demo and not @api") //("@smoke") //make sure you import this from io.cucumber.java
     public void beforeScenario(){
         System.out.println("This will be printed before each scenario");
         Driver.getDriver().manage().window().maximize();
@@ -38,8 +38,8 @@ public class Hooks {
     }
 
     //we can add anything after the scenario using @After annotation
-    //("not @demo") this means do not run those After steps for anything has demo tag
-    @After("not @demo")                         //make sure you import this from io.cucumber.java
+    //("not @demo") this means do not run those After steps for anything has demo tag and api tag
+    @After("not @demo and not @api")                         //make sure you import this from io.cucumber.java
     public void afterScenario(Scenario scenario) {//make sure you import (Scenario) from io.cucumber.java
         System.out.println("This will be printed after each scenario");
 
@@ -58,7 +58,7 @@ public class Hooks {
 //    }
 //
 //    //we can add anything after each step using @AfterStep annotation
-//    @AfterStep                     //make sure you import this from io.cucumber.java
+//    @AfterStep("not @demo and not @api")       //make sure you import this from io.cucumber.java
 //    public void afterStep() throws InterruptedException {
 //        System.out.println("This line will get printed after each step");
 //        Thread.sleep(2000);//this will apply for each step

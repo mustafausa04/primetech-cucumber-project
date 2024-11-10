@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--we have to put those 2 code above-->
+
+<!--we will create the first tag (suite) and name anything-->
+<suite name="API test">
+    <!--we specify the test and give it name-->
+    <test name="API Test for Crater application">
+        <!--we specify the packages and we put the package that we want to run which is "api_tests"-->
+        <packages>
+            <package name="api_tests"></package><!--this will execute all the files in "api_tests"-->
+        </packages>
+
+    </test>
+
+</suite>

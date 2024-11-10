@@ -15,8 +15,7 @@
     </properties>
 
     <dependencies>
-
-
+        <!--selenium dependency-->
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -24,6 +23,7 @@
             <version>4.19.0</version>
         </dependency>
 
+        <!--cucumber dependency-->
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -31,6 +31,7 @@
             <version>7.14.0</version>
         </dependency>
 
+        <!--junit dependency-->
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -39,6 +40,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!--report dependency-->
         <!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
         <dependency>
             <groupId>tech.grasshopper</groupId>
@@ -46,29 +48,111 @@
             <version>1.14.0</version>
         </dependency>
 
+        <!-- this dependency for testNG -->
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.9.0</version>
+            <scope>test</scope>
+        </dependency>
 
+        <!--to read excel sheet dependency-->
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+        <!--RestAssured dependency-->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.5.0</version>
+        </dependency>
+
+        <!-- json dependency -->
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <!-- this is schema dependency -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.4.0</version>
+        </dependency>
+
+        <!--this dependency will get us fake names and numbers-->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
     </dependencies>
 
-    <!--we will add this (surefire) even though maven can do everything without it we can add it in case if we run
-     1000 cases and some fails they will make the others fail too so we can skip the failing one to continue
-     doing what we do-->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>     <!--those 2 line are plug in -->
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
-                <configuration>                                  <!--those are configurations-->
-                    <!--<parallel>methods</parallel>-->   <!--this one used when you run multi scenarios at once-->
-                    <!--<useUnlimitedThreads>true</useUnlimitedThreads>--> <!--this is to use Threads-->
-                    <!--<threadCount>4</threadCount>-->  <!--this one to use Threads too-->
-                    <testFailureIgnore>true</testFailureIgnore> <!--this is to ignore the failed test case to continue -->
-                    <includes>
-                        <include>**/TestRunner.java</include><!--this(**) means find me anywhere TestRunner-->
-                    </includes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
+    <!--we will create (maven profiles) and specify each profile to run cucumber in the first and API ine the second one-->
+    <profiles>
+        <profile><!--tis one to run the cucumber -->
+            <id>cucumber-tests</id>
+            <!--we will add this (surefire) even though maven can do everything without it we can add it in case if we run
+            1000 cases and some fails they will make the others fail too so we can skip the failing one to continue
+            doing what we do-->
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>     <!--those 2 line are plug in -->
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.2.5</version>
+                        <configuration>                                  <!--those are configurations-->
+                            <!--<parallel>methods</parallel>-->   <!--this one used when you run multi scenarios at once-->
+                            <!--<useUnlimitedThreads>true</useUnlimitedThreads>--> <!--this is to use Threads-->
+                            <!--<threadCount>4</threadCount>-->  <!--this one to use Threads too-->
+                            <testFailureIgnore>true</testFailureIgnore> <!--this is to ignore the failed test case to continue -->
+                            <includes><!--we will use this tag for running java class-->
+                                <include>**/TestRunner.java</include><!--this(**) means find me anywhere TestRunner and run it-->
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile><!--this one will run the API-->
+            <id>testng-tests</id>
+            <!--we will add this (surefire) even though maven can do everything without it we can add it in case if we run
+            1000 cases and some fails they will make the others fail too so we can skip the failing one to continue
+            doing what we do-->
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>     <!--those 2 line are plug in -->
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.2.5</version>
+                        <configuration>                                  <!--those are configurations-->
+                            <!--<parallel>methods</parallel>-->   <!--this one used when you run multi scenarios at once-->
+                            <!--<useUnlimitedThreads>true</useUnlimitedThreads>--> <!--this is to use Threads-->
+                            <!--<threadCount>4</threadCount>-->  <!--this one to use Threads too-->
+                            <testFailureIgnore>true</testFailureIgnore> <!--this is to ignore the failed test case to continue -->
+                            <suiteXmlFiles><!--we will use this tg for running xml file-->
+                                <suiteXmlFile>APITestNG.xml</suiteXmlFile><!--this will run APITestNG.xml file-->
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 
 </project>
