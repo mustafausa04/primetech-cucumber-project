@@ -75,5 +75,4 @@ public class GetListOfInvoicesAPI_StepDef {
         Assert.assertTrue(!listOfIds.isEmpty());//to verify that the list is not empty
     }
 
-
 }
