@@ -36,7 +36,8 @@ import org.junit.runner.RunWith;
         //tags = "@smoke or @regression"//this will execute all the scenarios with @smoke or @regression.
         //tags = "@smoke and @regression"//this will execute only the scenarios with these 2 tags.
         //tags = "@smoke"//this will run only the scenario with the @smoke tag after scanning all features files
-        tags = "@crater"//this will run "User_Access.feature" only not the other files like (Login_saucedemo.feature)
+        //tags = "@crater"//this will run "User_Access.feature" only not the other files like (Login_saucedemo.feature)
+        tags = "@db-test"//this will run "Add_New_Invoice_DB_Verification.feature" then all the steps in "AddNewInvoice_StepDef.java" then the last step we added in "AddInvoice_And_Verify_DB_StepDef.java"
         //dryRun = true //if you run this it will show you any step in the features files that is not working
                         //so we will create an exact copy of this file but we will activate the dryRun there
                         //so we can run it anytime we want to see steps that are not executing and we will keep
